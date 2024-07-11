@@ -51,19 +51,11 @@ import {
   useDollarState,
   usePlasmicTranslator,
   useTrigger,
-  wrapWithClassName
+  wrapWithClassName,
 } from "@plasmicapp/react-web";
-import {
-  DataCtxReader as DataCtxReader__,
-  useDataEnv,
-  useGlobalActions
-} from "@plasmicapp/react-web/lib/host";
+import { DataCtxReader as DataCtxReader__, useDataEnv, useGlobalActions } from "@plasmicapp/react-web/lib/host";
 
-import {
-  executePlasmicDataOp,
-  usePlasmicDataOp,
-  usePlasmicInvalidate
-} from "@plasmicapp/react-web/lib/data-sources";
+import { executePlasmicDataOp, usePlasmicDataOp, usePlasmicInvalidate } from "@plasmicapp/react-web/lib/data-sources";
 
 import { AntdTabs } from "@plasmicpkgs/antd5/skinny/registerTabs";
 import { AntdTabItem } from "@plasmicpkgs/antd5/skinny/registerTabs";
@@ -115,7 +107,7 @@ function PlasmicHomepage__RenderFunc(props: {
 
   const $props = {
     ...args,
-    ...variants
+    ...variants,
   };
 
   const __nextRouter = useNextRouter();
@@ -123,17 +115,15 @@ function PlasmicHomepage__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  let [$queries, setDollarQueries] = React.useState<
-    Record<string, ReturnType<typeof usePlasmicDataOp>>
-  >({});
+  let [$queries, setDollarQueries] = React.useState<Record<string, ReturnType<typeof usePlasmicDataOp>>>({});
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
         path: "tabs.activeKey",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "tab0"
-      }
+        initFunc: ({ $props, $state, $queries, $ctx }) => "tab0",
+      },
     ],
     [$props, $ctx, $refs]
   );
@@ -141,7 +131,7 @@ function PlasmicHomepage__RenderFunc(props: {
     $props,
     $ctx,
     $queries: $queries,
-    $refs
+    $refs,
   });
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
@@ -152,11 +142,11 @@ function PlasmicHomepage__RenderFunc(props: {
         userArgs: {},
         cacheKey: `plasmic.$.ec0eb15f-6816-4eb5-ac97-b019273d18eb.$.`,
         invalidatedKeys: null,
-        roleId: null
+        roleId: null,
       };
-    })
+    }),
   };
-  if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
+  if (Object.keys(new$Queries).some((k) => new$Queries[k] !== $queries[k])) {
     setDollarQueries(new$Queries);
 
     $queries = new$Queries;
@@ -198,15 +188,12 @@ function PlasmicHomepage__RenderFunc(props: {
             centered={false}
             className={classNames("__wab_instance", sty.tabs)}
             defaultActiveKey={"tab0"}
-            items={(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            items={((_par) => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
                 try {
                   return $queries.tur.data;
                 } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
+                  if (e instanceof TypeError || e?.plasmicType === "PlasmicUndefinedDataError") {
                     return [];
                   }
                   throw e;
@@ -224,34 +211,25 @@ function PlasmicHomepage__RenderFunc(props: {
                     try {
                       return "tab" + currentIndex;
                     } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
+                      if (e instanceof TypeError || e?.plasmicType === "PlasmicUndefinedDataError") {
                         return undefined;
                       }
                       throw e;
                     }
                   })()}
                   label={
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text___3Dx3Q
-                      )}
-                    >
+                    <div className={classNames(projectcss.all, projectcss.__wab_text, sty.text___3Dx3Q)}>
                       <React.Fragment>
                         {(() => {
                           try {
                             return currentItem.name;
                           } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "First Item";
-                            }
+                            // if (
+                            //   e instanceof TypeError ||
+                            //   e?.plasmicType === "PlasmicUndefinedDataError"
+                            // ) {
+                            //   return "First Item";
+                            // }
                             throw e;
                           }
                         })()}
@@ -263,31 +241,19 @@ function PlasmicHomepage__RenderFunc(props: {
                     try {
                       return currentItem.status === "finished";
                     } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
+                      if (e instanceof TypeError || e?.plasmicType === "PlasmicUndefinedDataError") {
                         return true;
                       }
                       throw e;
                     }
                   })() ? (
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__u6M1
-                      )}
-                    >
+                    <div className={classNames(projectcss.all, projectcss.__wab_text, sty.text__u6M1)}>
                       <React.Fragment>
                         {(() => {
                           try {
                             return "Tur " + currentItem.status;
                           } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
+                            if (e instanceof TypeError || e?.plasmicType === "PlasmicUndefinedDataError") {
                               return "First Children";
                             }
                             throw e;
@@ -300,31 +266,19 @@ function PlasmicHomepage__RenderFunc(props: {
                     try {
                       return currentItem.status === "processing";
                     } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
+                      if (e instanceof TypeError || e?.plasmicType === "PlasmicUndefinedDataError") {
                         return true;
                       }
                       throw e;
                     }
                   })() ? (
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__jpCfF
-                      )}
-                    >
+                    <div className={classNames(projectcss.all, projectcss.__wab_text, sty.text__jpCfF)}>
                       <React.Fragment>
                         {(() => {
                           try {
                             return "Tur " + currentItem.status;
                           } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
+                            if (e instanceof TypeError || e?.plasmicType === "PlasmicUndefinedDataError") {
                               return "First Children";
                             }
                             throw e;
@@ -337,31 +291,19 @@ function PlasmicHomepage__RenderFunc(props: {
                     try {
                       return currentItem.status === "becomes";
                     } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
+                      if (e instanceof TypeError || e?.plasmicType === "PlasmicUndefinedDataError") {
                         return true;
                       }
                       throw e;
                     }
                   })() ? (
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__pCmSa
-                      )}
-                    >
+                    <div className={classNames(projectcss.all, projectcss.__wab_text, sty.text__pCmSa)}>
                       <React.Fragment>
                         {(() => {
                           try {
                             return "Tur " + currentItem.status;
                           } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
+                            if (e instanceof TypeError || e?.plasmicType === "PlasmicUndefinedDataError") {
                               return "First Children";
                             }
                             throw e;
@@ -389,11 +331,10 @@ function PlasmicHomepage__RenderFunc(props: {
 const PlasmicDescendants = {
   root: ["root", "tabs", "tabItem"],
   tabs: ["tabs", "tabItem"],
-  tabItem: ["tabItem"]
+  tabItem: ["tabItem"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
-type DescendantsType<T extends NodeNameType> =
-  (typeof PlasmicDescendants)[T][number];
+type DescendantsType<T extends NodeNameType> = (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
   tabs: typeof AntdTabs;
@@ -401,10 +342,7 @@ type NodeDefaultElementType = {
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
-type NodeOverridesType<T extends NodeNameType> = Pick<
-  PlasmicHomepage__OverridesType,
-  DescendantsType<T>
->;
+type NodeOverridesType<T extends NodeNameType> = Pick<PlasmicHomepage__OverridesType, DescendantsType<T>>;
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {
@@ -412,10 +350,7 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicHomepage__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicHomepage__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicHomepage__ArgsType,
-      ReservedPropsType
-    > &
+    /* Specify args directly as props*/ Omit<PlasmicHomepage__ArgsType, ReservedPropsType> &
     /* Specify overrides for each element directly as props*/ Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
@@ -427,16 +362,14 @@ type NodeComponentProps<T extends NodeNameType> =
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };
-  const func = function <T extends PropsType>(
-    props: T & StrictProps<T, PropsType>
-  ) {
+  const func = function <T extends PropsType>(props: T & StrictProps<T, PropsType>) {
     const { variants, args, overrides } = React.useMemo(
       () =>
         deriveRenderOpts(props, {
           name: nodeName,
           descendantNames: PlasmicDescendants[nodeName],
           internalArgPropNames: PlasmicHomepage__ArgProps,
-          internalVariantPropNames: PlasmicHomepage__VariantProps
+          internalVariantPropNames: PlasmicHomepage__VariantProps,
         }),
       [props, nodeName]
     );
@@ -444,7 +377,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -472,8 +405,8 @@ export const PlasmicHomepage = Object.assign(
       title: "",
       description: "",
       ogImageSrc: "",
-      canonical: ""
-    }
+      canonical: "",
+    },
   }
 );
 
