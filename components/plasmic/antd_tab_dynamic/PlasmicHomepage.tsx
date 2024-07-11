@@ -59,8 +59,15 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import {
+  executePlasmicDataOp,
+  usePlasmicDataOp,
+  usePlasmicInvalidate
+} from "@plasmicapp/react-web/lib/data-sources";
+
 import { AntdTabs } from "@plasmicpkgs/antd5/skinny/registerTabs";
 import { AntdTabItem } from "@plasmicpkgs/antd5/skinny/registerTabs";
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -116,6 +123,9 @@ function PlasmicHomepage__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  let [$queries, setDollarQueries] = React.useState<
+    Record<string, ReturnType<typeof usePlasmicDataOp>>
+  >({});
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -130,9 +140,27 @@ function PlasmicHomepage__RenderFunc(props: {
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
-    $queries: {},
+    $queries: $queries,
     $refs
   });
+
+  const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
+    tur: usePlasmicDataOp(() => {
+      return {
+        sourceId: "dQkPr8bukYF7YNdZkHCFgq",
+        opId: "ec0eb15f-6816-4eb5-ac97-b019273d18eb",
+        userArgs: {},
+        cacheKey: `plasmic.$.ec0eb15f-6816-4eb5-ac97-b019273d18eb.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    })
+  };
+  if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
+    setDollarQueries(new$Queries);
+
+    $queries = new$Queries;
+  }
 
   return (
     <React.Fragment>
@@ -173,10 +201,7 @@ function PlasmicHomepage__RenderFunc(props: {
             items={(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
                 try {
-                  return [
-                    2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-                    19, 20
-                  ];
+                  return $queries.tur.data;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -219,7 +244,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return "Tab " + currentItem;
+                            return currentItem.name;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -234,29 +259,117 @@ function PlasmicHomepage__RenderFunc(props: {
                     </div>
                   }
                 >
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__u6M1
-                    )}
-                  >
-                    <React.Fragment>
-                      {(() => {
-                        try {
-                          return "Tab child " + currentItem;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "First Children";
+                  {(() => {
+                    try {
+                      return currentItem.status === "finished";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__u6M1
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return "Tur " + currentItem.status;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "First Children";
+                            }
+                            throw e;
                           }
-                          throw e;
-                        }
-                      })()}
-                    </React.Fragment>
-                  </div>
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  ) : null}
+                  {(() => {
+                    try {
+                      return currentItem.status === "processing";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__jpCfF
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return "Tur " + currentItem.status;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "First Children";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  ) : null}
+                  {(() => {
+                    try {
+                      return currentItem.status === "becomes";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__pCmSa
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return "Tur " + currentItem.status;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "First Children";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  ) : null}
                 </AntdTabItem>
               );
             })}
